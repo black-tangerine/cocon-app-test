@@ -195,7 +195,8 @@ class _LobbyState extends State<Lobby> {
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                         color: Colors.grey,
-                        overflow: TextOverflow.ellipsis
+                        overflow: TextOverflow.ellipsis,
+                        decoration: TextDecoration.lineThrough
                       ),
                     ),
                   ),
