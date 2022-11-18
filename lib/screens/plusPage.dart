@@ -90,6 +90,16 @@ class _PlusPageState extends State<PlusPage> {
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
               item.image_thumbnail_url as String,
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress){
+                if(loadingProgress == null){
+                  return child;
+                }
+                return Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.orange,
+                    )
+                );
+              },
             ),
           ),
         ),

@@ -71,12 +71,12 @@ class _LobbyState extends State<Lobby> {
         Container(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
-              future: DatabaseService.instance.getOuterData(),
+              future: DatabaseService.instance.getItemData(0),
               builder: (context, snapshot) {
                 //print(snapshot.data);
                 if(snapshot.connectionState == ConnectionState.waiting)
                   return Center(child: CircularProgressIndicator(color: Colors.orange,),);
-                if(!snapshot.hasData)
+                if(!snapshot.hasData || snapshot.data?.length == 0)
                   return Center(child: Text("none"),);
                 return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -106,11 +106,11 @@ class _LobbyState extends State<Lobby> {
         Container(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
-              future : DatabaseService.instance.getTopData(),
+              future : DatabaseService.instance.getItemData(1),
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting)
                   return Center(child: CircularProgressIndicator(color: Colors.orange,),);
-                if(!snapshot.hasData)
+                if(!snapshot.hasData || snapshot.data?.length == 0)
                   return Center(child: Text("none"),);
                 return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -141,6 +141,16 @@ class _LobbyState extends State<Lobby> {
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
                 item.image_thumbnail_url as String,
+              loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress){
+                  if(loadingProgress == null){
+                    return child;
+                  }
+                  return Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.orange,
+                    )
+                  );
+              },
             ),
           ),
         ),

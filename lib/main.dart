@@ -27,4 +27,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// const => 선언부 무조건 값 final => 선언시 값 부여 x 가능
+
 
