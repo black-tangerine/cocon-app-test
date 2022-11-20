@@ -23,7 +23,7 @@ class _LobbyState extends State<Lobby> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text("Cocon",
+        title: Text('Cocon',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange),
         ),
       ),
@@ -67,17 +67,16 @@ class _LobbyState extends State<Lobby> {
   Widget outerList() {
     return Column(
       children: [
-        category("아우터", 1),
+        category('아우터', 1),
         Container(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
               future: DatabaseService.instance.getItemData(0),
               builder: (context, snapshot) {
-                //print(snapshot.data);
                 if(snapshot.connectionState == ConnectionState.waiting)
                   return Center(child: CircularProgressIndicator(color: Colors.orange,),);
                 if(!snapshot.hasData || snapshot.data?.length == 0)
-                  return Center(child: Text("none"),);
+                  return Center(child: Text('none'),);
                 return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 0.6,
@@ -102,7 +101,7 @@ class _LobbyState extends State<Lobby> {
   Widget topList() {
     return Column(
       children: [
-        category("상의", 2),
+        category('상의', 2),
         Container(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
@@ -111,7 +110,7 @@ class _LobbyState extends State<Lobby> {
                 if(snapshot.connectionState == ConnectionState.waiting)
                   return Center(child: CircularProgressIndicator(color: Colors.orange,),);
                 if(!snapshot.hasData || snapshot.data?.length == 0)
-                  return Center(child: Text("none"),);
+                  return Center(child: Text('none'),);
                 return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.6,
@@ -176,21 +175,21 @@ class _LobbyState extends State<Lobby> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("${item.sale_percent.toString()}%",
+                  Text('${item.sale_percent.toString()}%',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.red
                     ),
                   ),
-                  Text("${Utils.comma(item.sale_price as int).toString()}원",
+                  Text('${Utils.comma(item.sale_price as int).toString()}원',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                     ),
                   ),
                   Expanded(
-                    child: Text("${Utils.comma(item.price as int).toString()}원",
+                    child: Text('${Utils.comma(item.price as int).toString()}원',
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
@@ -202,7 +201,7 @@ class _LobbyState extends State<Lobby> {
                   ),
                 ],
               ) :
-              Text("${Utils.comma(item.sale_price as int).toString()}원",
+              Text('${Utils.comma(item.sale_price as int).toString()}원',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16
@@ -229,7 +228,7 @@ class _LobbyState extends State<Lobby> {
         height: 30,
         width: 70,
         child: Center(
-          child: Text("더보기",
+          child: Text('더보기',
             style: TextStyle(color: Colors.white),
           ),
         ),

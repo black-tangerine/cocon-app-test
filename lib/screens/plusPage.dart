@@ -49,7 +49,7 @@ class _PlusPageState extends State<PlusPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_mainController.plusPage_type.value == 1 ? "아우터" : "상의",
+            Text(_mainController.plusPage_type.value == 1 ? '아우터' : '상의',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24
@@ -125,21 +125,21 @@ class _PlusPageState extends State<PlusPage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("${item.sale_percent.toString()}%",
+                  Text('${item.sale_percent.toString()}%',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.red
                     ),
                   ),
-                  Text("${Utils.comma(item.sale_price as int).toString()}원",
+                  Text('${Utils.comma(item.sale_price as int).toString()}원',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16
                     ),
                   ),
                   Expanded(
-                    child: Text("${Utils.comma(item.price as int).toString()}원",
+                    child: Text('${Utils.comma(item.price as int).toString()}원',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
@@ -152,7 +152,7 @@ class _PlusPageState extends State<PlusPage> {
                   ),
                 ],
               ) :
-              Text("${Utils.comma(item.sale_price as int).toString()}원",
+              Text('${Utils.comma(item.sale_price as int).toString()}원',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16
