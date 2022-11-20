@@ -23,7 +23,7 @@ class _LobbyState extends State<Lobby> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text('Cocon',
+        title: const Text('COCON',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange),
         ),
       ),
@@ -46,13 +46,13 @@ class _LobbyState extends State<Lobby> {
   Widget category(String categoryText, int type) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal : 10.0),
-      child: Container(
+      child: SizedBox(
         height: 45,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(categoryText,
-              style: TextStyle(
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24
               ),
@@ -68,17 +68,19 @@ class _LobbyState extends State<Lobby> {
     return Column(
       children: [
         category('아우터', 1),
-        Container(
+        SizedBox(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
               future: DatabaseService.instance.getItemData(0),
               builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.waiting)
-                  return Center(child: CircularProgressIndicator(color: Colors.orange,),);
-                if(!snapshot.hasData || snapshot.data?.length == 0)
-                  return Center(child: Text('none'),);
+                if(snapshot.connectionState == ConnectionState.waiting){
+                  return const Center(child: CircularProgressIndicator(color: Colors.orange,),);
+                }
+                if(!snapshot.hasData){
+                  return const Center(child: Text('none'),);
+                }
                 return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         childAspectRatio: 0.6,
                         crossAxisCount: 2,
                     ),
@@ -102,17 +104,19 @@ class _LobbyState extends State<Lobby> {
     return Column(
       children: [
         category('상의', 2),
-        Container(
+        SizedBox(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
               future : DatabaseService.instance.getItemData(1),
               builder: (context, snapshot) {
-                if(snapshot.connectionState == ConnectionState.waiting)
-                  return Center(child: CircularProgressIndicator(color: Colors.orange,),);
-                if(!snapshot.hasData || snapshot.data?.length == 0)
-                  return Center(child: Text('none'),);
+                if(snapshot.connectionState == ConnectionState.waiting){
+                  return const Center(child: CircularProgressIndicator(color: Colors.orange,),);
+                }
+                if(!snapshot.hasData){
+                  return const Center(child: Text('none'),);
+                }
                 return GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: 0.6,
                       crossAxisCount: 2,
                     ),
@@ -144,7 +148,7 @@ class _LobbyState extends State<Lobby> {
                   if(loadingProgress == null){
                     return child;
                   }
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(
                       color: Colors.orange,
                     )
@@ -153,7 +157,7 @@ class _LobbyState extends State<Lobby> {
             ),
           ),
         ),
-        Container(
+        SizedBox(
           height: 70,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,7 +169,7 @@ class _LobbyState extends State<Lobby> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
                 child: Text(item.name as String,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15
                   ),
@@ -176,21 +180,21 @@ class _LobbyState extends State<Lobby> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text('${item.sale_percent.toString()}%',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.red
                     ),
                   ),
                   Text('${Utils.comma(item.sale_price as int).toString()}원',
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
                     ),
                   ),
                   Expanded(
                     child: Text('${Utils.comma(item.price as int).toString()}원',
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 12,
                         color: Colors.grey,
@@ -202,7 +206,7 @@ class _LobbyState extends State<Lobby> {
                 ],
               ) :
               Text('${Utils.comma(item.sale_price as int).toString()}원',
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16
                 ),
@@ -217,7 +221,7 @@ class _LobbyState extends State<Lobby> {
   Widget plusButton(int type){
     return GestureDetector(
       onTap: () {
-        _mainController.plusPage_type.value = type;
+        _mainController.plusPageType.value = type;
         Get.to(() => PlusPage());
       },
       child: Container(
@@ -227,7 +231,7 @@ class _LobbyState extends State<Lobby> {
         ),
         height: 30,
         width: 70,
-        child: Center(
+        child: const Center(
           child: Text('더보기',
             style: TextStyle(color: Colors.white),
           ),

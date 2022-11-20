@@ -26,7 +26,7 @@ class DatabaseService {
     );
     if(response.statusCode == 200){
       final responseJson = jsonDecode(response.body);
-      List<ItemModel> itemList = (responseJson['data'] as List).map((e) => ItemModel.fromJson(e as Map<String, dynamic>)).toList();
+      List<ItemModel> itemList = (responseJson['data'] as List).map((item) => ItemModel.fromJson(item as Map<String, dynamic>)).toList();
       (type == 0) ? _mainController.outerList.assignAll(itemList) : _mainController.topList.assignAll(itemList);
       return itemList;
     } else if(response.statusCode == 429){

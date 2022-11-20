@@ -1,9 +1,9 @@
-import 'package:cocon_app/controller/mainController.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../model/itemModel.dart';
-import '../util/utils.dart';
+import 'package:cocon_app/controller/mainController.dart';
+import 'package:cocon_app/model/itemModel.dart';
+import 'package:cocon_app/util/utils.dart';
 
 class PlusPage extends StatefulWidget {
   const PlusPage({Key? key}) : super(key: key);
@@ -25,7 +25,7 @@ class _PlusPageState extends State<PlusPage> {
         backgroundColor: Colors.white,
         title: IconButton(
           onPressed: () => Get.back(),
-          icon: Icon(Icons.arrow_back_ios,
+          icon: const Icon(Icons.arrow_back_ios,
             color: Colors.black,
           ),
         ),
@@ -44,13 +44,13 @@ class _PlusPageState extends State<PlusPage> {
   Widget category() {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal : 10.0),
-      child: Container(
+      child: SizedBox(
         height: 45,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_mainController.plusPage_type.value == 1 ? '아우터' : '상의',
-              style: TextStyle(
+            Text(_mainController.plusPageType.value == 1 ? '아우터' : '상의',
+              style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24
               ),
@@ -63,10 +63,10 @@ class _PlusPageState extends State<PlusPage> {
 
   Widget itemGridView(){
     List<ItemModel> itemList = [];
-    (_mainController.plusPage_type.value == 1 ? itemList.assignAll(_mainController.outerList) : itemList.assignAll(_mainController.topList));
+    (_mainController.plusPageType.value == 1 ? itemList.assignAll(_mainController.outerList) : itemList.assignAll(_mainController.topList));
     return Expanded(
       child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             childAspectRatio: 0.6,
             crossAxisCount: 2,
           ),
@@ -94,7 +94,7 @@ class _PlusPageState extends State<PlusPage> {
                 if(loadingProgress == null){
                   return child;
                 }
-                return Center(
+                return const Center(
                     child: CircularProgressIndicator(
                       color: Colors.orange,
                     )
@@ -103,7 +103,7 @@ class _PlusPageState extends State<PlusPage> {
             ),
           ),
         ),
-        Container(
+        SizedBox(
           height: 70,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -115,7 +115,7 @@ class _PlusPageState extends State<PlusPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 5.0),
                 child: Text(item.name as String,
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 15
                   ),
@@ -126,21 +126,21 @@ class _PlusPageState extends State<PlusPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text('${item.sale_percent.toString()}%',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.red
                     ),
                   ),
                   Text('${Utils.comma(item.sale_price as int).toString()}원',
-                    style: TextStyle(
+                    style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16
                     ),
                   ),
                   Expanded(
                     child: Text('${Utils.comma(item.price as int).toString()}원',
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 12,
                           color: Colors.grey,
@@ -153,7 +153,7 @@ class _PlusPageState extends State<PlusPage> {
                 ],
               ) :
               Text('${Utils.comma(item.sale_price as int).toString()}원',
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16
                 ),

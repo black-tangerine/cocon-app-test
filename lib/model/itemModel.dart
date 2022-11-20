@@ -61,7 +61,7 @@ class ItemModel{
   String? get seller_en_name => seller!['en_name'] as String;
   String? get seller_image_url => seller!['image_url'] as String;
   String? get seller_text => seller!['text'] as String;
-  bool? get seller_is_brandstore => seller!['is_brandstor'] as bool;
+  bool? get seller_is_brandstore => seller!['is_brandstore'] as bool;
   bool? get seller_is_partner => seller!['is_partner'] as bool;
 
 }
