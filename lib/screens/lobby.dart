@@ -43,7 +43,7 @@ class _LobbyState extends State<Lobby> {
         ));
   }
 
-  Widget category(String categoryText, int type) {
+  Widget category(String categoryText, int type) { //type 1 : 아우터 2 : 상의
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal : 10.0),
       child: SizedBox(
