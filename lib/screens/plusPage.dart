@@ -5,6 +5,8 @@ import 'package:cocon_app/controller/mainController.dart';
 import 'package:cocon_app/model/itemModel.dart';
 import 'package:cocon_app/util/utils.dart';
 
+//enum type { outer, top } // Todo Type 정리
+
 class PlusPage extends StatefulWidget {
   const PlusPage({Key? key}) : super(key: key);
 
@@ -15,6 +17,7 @@ class PlusPage extends StatefulWidget {
 class _PlusPageState extends State<PlusPage> {
 
   final MainController _mainController = Get.find();
+
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,7 @@ class _PlusPageState extends State<PlusPage> {
         child: Column(
           children: [
             Obx(() => category()),
-            Obx(() => itemGridView()),
+            Obx(() =>  _mainController.plusPageType.value == '아우터' ? outerGridView() : topGridView()),
           ],
         ),
       ),
@@ -49,7 +52,7 @@ class _PlusPageState extends State<PlusPage> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(_mainController.plusPageType.value == 1 ? '아우터' : '상의',
+            Text(_mainController.plusPageType.value,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24
@@ -61,26 +64,44 @@ class _PlusPageState extends State<PlusPage> {
     );
   }
 
-  Widget itemGridView(){
-    List<ItemModel> itemList = [];
-    (_mainController.plusPageType.value == 1 ? itemList.assignAll(_mainController.outerList) : itemList.assignAll(_mainController.topList));
+  Widget outerGridView(){
     return Expanded(
-      child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            childAspectRatio: 0.6,
-            crossAxisCount: 2,
-          ),
-          itemCount: itemList.length,
-          itemBuilder: (BuildContext context, int index) {
-            ItemModel item = itemList[index];
-            return Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: itemContainer(item),
-            );
-          }
-      ),
+        child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 0.6,
+              crossAxisCount: 2,
+            ),
+            itemCount: _mainController.outerList.length,
+            itemBuilder: (BuildContext context, int index){
+              ItemModel item = _mainController.outerList[index];
+              return Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: itemContainer(item),
+              );
+
+            })
     );
   }
+
+  Widget topGridView(){
+    return Expanded(
+        child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              childAspectRatio: 0.6,
+              crossAxisCount: 2,
+            ),
+            itemCount: _mainController.topList.length,
+            itemBuilder: (BuildContext context, int index){
+              ItemModel item = _mainController.topList[index];
+              return Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: itemContainer(item),
+              );
+
+            })
+    );
+  }
+
 
   Widget itemContainer(ItemModel item){
     return Column(

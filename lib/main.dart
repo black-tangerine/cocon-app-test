@@ -60,5 +60,10 @@ REFACTOR: 코드 리펙토링
 TEST: 테스트 코트, 리펙토링 테스트 코드 추가
 CHORE: 빌드 업무 수정, 패키지 매니저 수정(ex .gitignore 수정 같은 경우)
 ADD, REMOVE, USE, REFACTOR, SIMPLIFY, UPDATE, IMPROVE, MAKE, IMPLEMENT, REVISE...
+
+개행문자
+소스코드를 한줄씩(line by line)으로 읽습니다. 
+그리하여 파일이 끝났더라도 개행문자가 없으면 한 줄이 끝나지 않은 것으로 인식해서 정상적으로 동작하지 않는 문제가 발생할 수 있습니다.
+=> 자독개행 설정
 */
 

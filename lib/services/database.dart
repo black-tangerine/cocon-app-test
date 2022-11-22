@@ -37,33 +37,34 @@ class DatabaseService {
     return [];
   }
 
-  // Future<List<ItemModel>> getOuterData() async{
-  //   http.Response response = await http.get(
-  //     Uri.parse('https://cf-api-c.brandi.me/v1/web/categories/218/products?offset=0&limit=100&type=all&order=popular'),
-  //     headers: {
-  //       HttpHeaders.authorizationHeader : '3b17176f2eb5fdffb9bafdcc3e4bc192b013813caddccd0aad20c23ed272f076_1423639497',
-  //     }
-  //   );
-  //
-  //   final responseJson = jsonDecode(response.body);
-  //   List<ItemModel> outerList = (responseJson['data'] as List).map((e) => ItemModel.fromJson(e as Map<String, dynamic>)).toList();
-  //   _mainController.outerList.assignAll(outerList);
-  //   return outerList;
-  // }
-  //
-  // Future<List<ItemModel>> getTopData() async{
-  //   http.Response response = await http.get(
-  //       Uri.parse('https://cf-api-c.brandi.me/v1/web/categories/373/products?offset=0&limit=100&type=all&order=popular'),
-  //       headers: {
-  //         HttpHeaders.authorizationHeader : '3b17176f2eb5fdffb9bafdcc3e4bc192b013813caddccd0aad20c23ed272f076_1423639497',
-  //       }
-  //   );
-  //
-  //   final responseJson = jsonDecode(response.body);
-  //   List<ItemModel> topList = (responseJson['data'] as List).map((e) => ItemModel.fromJson(e as Map<String, dynamic>)).toList();
-  //   _mainController.topList.assignAll(topList);
-  //   return topList;
-  // }
+  Future<List<ItemModel>> getOuterData() async{
+    http.Response response = await http.get(
+      Uri.parse('https://cf-api-c.brandi.me/v1/web/categories/218/products?offset=0&limit=100&type=all&order=popular'),
+      headers: {
+        HttpHeaders.authorizationHeader : '3b17176f2eb5fdffb9bafdcc3e4bc192b013813caddccd0aad20c23ed272f076_1423639497',
+      }
+    );
+
+    final responseJson = jsonDecode(response.body);
+    List<ItemModel> outerList = (responseJson['data'] as List).map((item) => ItemModel.fromJson(item as Map<String, dynamic>)).toList();
+    _mainController.outerList.assignAll(outerList);
+    return outerList;
+  }
+
+  Future<List<ItemModel>> getTopData() async{
+    http.Response response = await http.get(
+        Uri.parse('https://cf-api-c.brandi.me/v1/web/categories/373/products?offset=0&limit=100&type=all&order=popular'),
+        headers: {
+          HttpHeaders.authorizationHeader : '3b17176f2eb5fdffb9bafdcc3e4bc192b013813caddccd0aad20c23ed272f076_1423639497',
+        }
+    );
+
+    final responseJson = jsonDecode(response.body);
+    List<ItemModel> topList = (responseJson['data'] as List).map((item) => ItemModel.fromJson(item as Map<String, dynamic>)).toList();
+    _mainController.topList.assignAll(topList);
+    return topList;
+  }
+
 
   // HTTP RESPONSE CODE
   // 1xx(정보) : 요청을 받았으며 프로세스를 계속 진행합니다.

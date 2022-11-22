@@ -6,6 +6,8 @@ import 'package:cocon_app/util/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+//enum type {outer , top}
+
 class Lobby extends StatefulWidget {
   const Lobby({Key? key}) : super(key: key);
 
@@ -43,7 +45,7 @@ class _LobbyState extends State<Lobby> {
         ));
   }
 
-  Widget category(String categoryText, int type) { //type 1 : 아우터 2 : 상의
+  Widget category(String categoryText) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal : 10.0),
       child: SizedBox(
@@ -57,7 +59,7 @@ class _LobbyState extends State<Lobby> {
                   fontSize: 24
               ),
             ),
-            plusButton(type),
+            plusButton(categoryText),
           ],
         ),
       ),
@@ -67,11 +69,11 @@ class _LobbyState extends State<Lobby> {
   Widget outerList() {
     return Column(
       children: [
-        category('아우터', 1),
+        category('아우터'),
         SizedBox(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
-              future: DatabaseService.instance.getItemData(0),
+              future: DatabaseService.instance.getOuterData(),
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting){
                   return const Center(child: CircularProgressIndicator(color: Colors.orange,),);
@@ -103,11 +105,11 @@ class _LobbyState extends State<Lobby> {
   Widget topList() {
     return Column(
       children: [
-        category('상의', 2),
+        category('상의'),
         SizedBox(
             height: Get.height / 2,
             child: FutureBuilder<List<ItemModel>>(
-              future : DatabaseService.instance.getItemData(1),
+              future : DatabaseService.instance.getTopData(),
               builder: (context, snapshot) {
                 if(snapshot.connectionState == ConnectionState.waiting){
                   return const Center(child: CircularProgressIndicator(color: Colors.orange,),);
@@ -218,11 +220,11 @@ class _LobbyState extends State<Lobby> {
     );
   }
 
-  Widget plusButton(int type){
+  Widget plusButton(String type){
     return GestureDetector(
       onTap: () {
         _mainController.plusPageType.value = type;
-        Get.to(() => PlusPage());
+        Get.to(() => const PlusPage());
       },
       child: Container(
         decoration: BoxDecoration(
