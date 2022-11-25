@@ -1,11 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:cocon_app/controller/main_controller.dart';
 import 'package:cocon_app/model/item_model.dart';
 import 'package:cocon_app/screens/plus_page.dart';
 import 'package:cocon_app/services/database.dart';
 import 'package:cocon_app/util/utils.dart';
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-
 //enum type {outer , top}
 
 class Lobby extends StatefulWidget {

@@ -1,4 +1,3 @@
-// ignore : file_names
 import 'package:json_annotation/json_annotation.dart'; // => Name source files using `lowercase_with_underscores`
 
 part 'item_model.g.dart';
