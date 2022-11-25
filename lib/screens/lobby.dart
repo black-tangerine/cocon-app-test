@@ -1,6 +1,6 @@
-import 'package:cocon_app/controller/mainController.dart';
-import 'package:cocon_app/model/itemModel.dart';
-import 'package:cocon_app/screens/plusPage.dart';
+import 'package:cocon_app/controller/main_controller.dart';
+import 'package:cocon_app/model/item_model.dart';
+import 'package:cocon_app/screens/plus_page.dart';
 import 'package:cocon_app/services/database.dart';
 import 'package:cocon_app/util/utils.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +145,7 @@ class _LobbyState extends State<Lobby> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
-                item.image_thumbnail_url as String,
+                item.imageThumbnailUrl as String,
               loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress){
                   if(loadingProgress == null){
                     return child;
@@ -165,7 +165,7 @@ class _LobbyState extends State<Lobby> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(item.seller_name as String,
+              Text(item.sellerName as String,
                 overflow: TextOverflow.ellipsis,
               ),
               Padding(
@@ -177,18 +177,18 @@ class _LobbyState extends State<Lobby> {
                   ),
                   overflow: TextOverflow.ellipsis,),
               ),
-              item.sale_percent != 0 ?
+              item.salePercent != 0 ?
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('${item.sale_percent.toString()}%',
+                  Text('${item.salePercent.toString()}%',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.red
                     ),
                   ),
-                  Text('${Utils.comma(item.sale_price as int).toString()}원',
+                  Text('${Utils.comma(item.salePrice as int).toString()}원',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16
@@ -207,7 +207,7 @@ class _LobbyState extends State<Lobby> {
                   ),
                 ],
               ) :
-              Text('${Utils.comma(item.sale_price as int).toString()}원',
+              Text('${Utils.comma(item.salePrice as int).toString()}원',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16

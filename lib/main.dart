@@ -2,7 +2,7 @@ import 'package:cocon_app/screens/lobby.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:cocon_app/controller/mainController.dart';
+import 'package:cocon_app/controller/main_controller.dart';
 
 void main() {
   runApp(const MyApp());

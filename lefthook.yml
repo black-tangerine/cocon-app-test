@@ -12,7 +12,10 @@
 #       tags: backend security
 #       run: bundle audit
 
-
+pre-commit:
+  commands:
+    linter:
+      run: flutter format --set-exit-if-changed --dry-run .
 
 
 # pre-commit:

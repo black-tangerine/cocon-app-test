@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:cocon_app/controller/mainController.dart';
-import 'package:cocon_app/model/itemModel.dart';
+import 'package:cocon_app/controller/main_controller.dart';
+import 'package:cocon_app/model/item_model.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart'as http;
 class DatabaseService {

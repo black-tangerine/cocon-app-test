@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:cocon_app/controller/mainController.dart';
-import 'package:cocon_app/model/itemModel.dart';
+import 'package:cocon_app/controller/main_controller.dart';
+import 'package:cocon_app/model/item_model.dart';
 import 'package:cocon_app/util/utils.dart';
 
-//enum type { outer, top } // Todo Type 정리
+//enum type { outer, top }
 
 class PlusPage extends StatefulWidget {
   const PlusPage({Key? key}) : super(key: key);
@@ -110,7 +110,7 @@ class _PlusPageState extends State<PlusPage> {
           child: ClipRRect(
             borderRadius: BorderRadius.circular(8.0),
             child: Image.network(
-              item.image_thumbnail_url as String,
+              item.imageThumbnailUrl as String,
               loadingBuilder: (BuildContext context, Widget child, ImageChunkEvent? loadingProgress){
                 if(loadingProgress == null){
                   return child;
@@ -130,7 +130,7 @@ class _PlusPageState extends State<PlusPage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text(item.seller_name as String,
+              Text(item.sellerName as String,
                 overflow: TextOverflow.ellipsis,
               ),
               Padding(
@@ -142,18 +142,18 @@ class _PlusPageState extends State<PlusPage> {
                   ),
                   overflow: TextOverflow.ellipsis,),
               ),
-              item.sale_percent != 0 ?
+              item.salePercent != 0 ?
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text('${item.sale_percent.toString()}%',
+                  Text('${item.salePercent.toString()}%',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16,
                         color: Colors.red
                     ),
                   ),
-                  Text('${Utils.comma(item.sale_price as int).toString()}원',
+                  Text('${Utils.comma(item.salePrice as int).toString()}원',
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 16
@@ -173,7 +173,7 @@ class _PlusPageState extends State<PlusPage> {
                   ),
                 ],
               ) :
-              Text('${Utils.comma(item.sale_price as int).toString()}원',
+              Text('${Utils.comma(item.salePrice as int).toString()}원',
                 style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16
