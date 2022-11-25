@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
+import 'package:cocon_app/controller/main_controller.dart';
+import 'package:cocon_app/screens/lobby.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -10,25 +12,57 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return GetMaterialApp(
       title: 'COCON APP',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.orange,
       ),
-      home: const _MyApp(),
+      initialBinding: BindingsBuilder(() => {
+        Get.put(MainController())
+      }),
+      home: const Lobby(),
     );
   }
 }
 
-class _MyApp extends StatelessWidget {
-  const _MyApp({Key? key}) : super(key: key);
+// const => 선언부 무조건 값 final => 선언시 값 부여 x 가능
 
-  @override
-  Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(
-        child: Text('cocon'),
-      ),
-    );
-  }
-}
+//Todo
+/*
+1. lefthook 설치 잘못되었음. global으로 설치 필요.
+
+2. lefthook.yaml 내용은 지우지 말고 작업.
+
+3. analysis_options.yaml의 규칙을 준수하며 코드 작성.
+    prefer_single_quotes: true // " => '
+    avoid_print: true // print x
+    sort_pub_dependencies: false // pubspec.yaml A to Z
+    avoid_setters_without_getters: false
+
+4. PR을 생성하여 main 브랜치에 머지하는 방식으로 변경
+  1) branch 생성
+   - git checkout -b 'branch Name'
+   - git branch // branch check
+  2) git push origin 'branch Name' // origin => my repo
+  3) PR 생성
+  4) Merge 이후 pull & delete branch
+
+5. 커밋 메시지를 작업의 내용을 유추할수 있는 의미있는 메시지 작성
+FEAT : 새로운 기능의 추가
+
+
+FIX: 버그 수정
+DOCS: 문서 수정
+STYLE: 스타일 관련 기능(코드 포맷팅, 세미콜론 누락, 코드 자체의 변경이 없는 경우)
+REFACTOR: 코드 리펙토링
+TEST: 테스트 코트, 리펙토링 테스트 코드 추가
+CHORE: 빌드 업무 수정, 패키지 매니저 수정(ex .gitignore 수정 같은 경우)
+ADD, REMOVE, USE, REFACTOR, SIMPLIFY, UPDATE, IMPROVE, MAKE, IMPLEMENT, REVISE...
+
+개행문자
+소스코드를 한줄씩(line by line)으로 읽습니다. 
+그리하여 파일이 끝났더라도 개행문자가 없으면 한 줄이 끝나지 않은 것으로 인식해서 정상적으로 동작하지 않는 문제가 발생할 수 있습니다.
+=> 자독개행 설정
+*/
+

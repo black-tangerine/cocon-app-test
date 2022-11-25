@@ -13,3 +13,4 @@ linter:
     avoid_print: true
     sort_pub_dependencies: false
     avoid_setters_without_getters: false
+
